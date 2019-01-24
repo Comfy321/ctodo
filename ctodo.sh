@@ -6,19 +6,30 @@ case ${flag} in
 		echo "Help... Work in Progress.."
 		;;
 	-a) ADD="${2}"
+		update()
 		lines=$(wc -l < ~/todo)
 		lines=$((lines+1))
 		echo $lines
 		echo "$lines ${2}" >> ~/todo
 		;;
 	-c) DONE="${2}"
-		sed -i "${2}d" ~/todo 
+		sed -i "${2}d" ~/todo
+		update()
 		;;
 	-v) 
+		update()
 		cat ~/todo
 		;;
+	-u)
+		update()
+		;;
 	*)
-		echo "not recognized.."
+		echo "Flag not recognized. Use -h for help."
 		;;
 esac
 
+#Updates numbers of entries in todo list
+update()
+{
+		awk '{$1 = FNR} 1' ~/todo
+}
