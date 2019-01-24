@@ -37,7 +37,11 @@ case ${flag} in
 		update
 		;;
 	-ca)
-		echo "complete all..."
+		read -p "Are you sure you want to complete everything? This will empty $todo." yn
+		case $yn in
+			[Yy]*) true > $todo ;;
+			*) exit 0 ;;
+		esac
 		;;
 	*)
 		echo "Flag not recognized. Use -h for help."
