@@ -1,7 +1,11 @@
 #ctodo - a comfy and very simple todo application.
+
+#TODO FILE: CHANGE THIS TO WHICH FILE YOU WANT TO USE
+todo=~/todo
+
 update()
 {
-		awk -i inplace '{$1 = FNR} 1' ~/todo
+		awk -i inplace '{$1 = FNR} 1' $todo
 }
 flag="${1}"
 case ${flag} in
@@ -16,21 +20,24 @@ case ${flag} in
 		;;
 	-a) ADD="${2}"
 		update
-		lines=$(wc -l < ~/todo)
+		lines=$(wc -l < $todo)
 		lines=$((lines+1))
 		echo $lines
-		echo "$lines ${2}" >> ~/todo
+		echo "$lines ${2}" >> $todo
 		;;
 	-c) DONE="${2}"
-		sed -i "${2}d" ~/todo >> ~/todo
+		sed -i "${2}d" ~/todo >> $todo
 		update
 		;;
 	-v) 
 		update
-		cat ~/todo
+		cat $todo
 		;;
 	-u)
 		update
+		;;
+	-ca)
+		echo "complete all..."
 		;;
 	*)
 		echo "Flag not recognized. Use -h for help."
