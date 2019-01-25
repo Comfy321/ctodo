@@ -14,18 +14,20 @@ case ${flag} in
 		-a: Add an item to todo list (ctodo -a \"homework\")
 		-c: Complete an item on todo list (ctodo -c 5)
 		-v: View the todo list (ctodo -v)
-		-s: set a todo file (default: ~/todo) (ctodo -s /foo/bar/todo)
 		-ca: complete all items on todo list (ctodo -ca)
-		-h: Display this dialog"
+		-h: Display this dialog
+		The default todo file is ~/todo. Edit the script to change the todo file"
 		;;
 	-a) ADD="${2}"
 		update
 		lines=$(wc -l < $todo)
 		lines=$((lines+1))
-		echo $lines
+		echo added ${2} at index $lines
 		echo "$lines ${2}" >> $todo
 		;;
 	-c) DONE="${2}"
+		echo -n "completed "
+	       	sed -n "${2}p" $todo
 		sed -i "${2}d" ~/todo >> $todo
 		update
 		;;
