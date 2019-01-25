@@ -16,7 +16,7 @@ case ${flag} in
 		-v: View the todo list (ctodo -v)
 		-ca: complete all items on todo list (ctodo -ca)
 		-h: Display this dialog
-	The default todo file is ~/todo. Edit the script to change the todo file"
+The default todo file is ~/todo. Edit the script to change the todo file"
 		;;
 	-a) ADD="${2}"
 		update
