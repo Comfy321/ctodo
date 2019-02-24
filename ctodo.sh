@@ -2,7 +2,9 @@
 
 #TODO FILE: CHANGE THIS TO WHICH FILE YOU WANT TO USE
 todo=~/todo
-
+if [  ! -f ~/todo ]; then 
+touch ~/todo
+fi
 update()
 {
 		awk -i inplace '{$1 = FNR} 1' $todo
@@ -28,7 +30,7 @@ The default todo file is ~/todo. Edit the script to change the todo file"
 	-c) DONE="${2}"
 		echo -n "completed "
 	       	sed -n "${2}p" $todo
-		sed -i "${2}d" ~/todo >> $todo
+		sed -i "${2}d" $todo >> $todo
 		update
 		;;
 	-v) 
@@ -39,7 +41,7 @@ The default todo file is ~/todo. Edit the script to change the todo file"
 		update
 		;;
 	-ca)
-		read -p "Are you sure you want to complete everything? This will empty $todo. [Y/N]  " yn
+		read -p "Are you sure you want to complete everything? This will empty $todo." yn
 		case $yn in
 			[Yy]*) true > $todo ;;
 			*) exit 0 ;;
