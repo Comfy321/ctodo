@@ -2,9 +2,7 @@
 
 #TODO FILE: CHANGE THIS TO WHICH FILE YOU WANT TO USE
 todo=~/todo
-if [  ! -f ~/todo ]; then 
-touch ~/todo
-fi
+
 update()
 {
 		awk -i inplace '{$1 = FNR} 1' $todo
@@ -48,7 +46,7 @@ The default todo file is ~/todo. Edit the script to change the todo file"
 		esac
 		;;
 	*)
-		echo "Flag not recognized. Use -h for help."
+		ctodo -v
 		;;
 esac
 
