@@ -2,7 +2,7 @@
 
 #TODO FILE: CHANGE THIS TO WHICH FILE YOU WANT TO USE
 todo=~/todo
-
+if [ ! -f ~/todo ]; then touch ~/todo fi #in case no file in ~/todo is found.
 update()
 {
 		awk -i inplace '{$1 = FNR} 1' $todo
