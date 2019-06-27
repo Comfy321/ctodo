@@ -39,7 +39,7 @@ The default todo file is ~/todo. Edit the script to change the todo file"
 		update
 		;;
 	-ca)
-		read -p "Are you sure you want to complete everything? This will empty $todo." yn
+		read -p "Are you sure you want to complete everything? This will empty $todo. (y/n) " yn
 		case $yn in
 			[Yy]*) true > $todo ;;
 			*) exit 0 ;;
